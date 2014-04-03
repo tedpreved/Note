@@ -10,8 +10,6 @@ import android.view.Menu;
 
 public class MainActivity extends Activity implements ActionBar.TabListener{
 
-
-
     private ViewPager mViewPager;
 
     @Override
@@ -43,9 +41,6 @@ public class MainActivity extends Activity implements ActionBar.TabListener{
             }
         }
         );
-
-
-
 
     }
 

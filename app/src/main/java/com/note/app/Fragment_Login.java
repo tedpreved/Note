@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by Home on 3/29/14.
@@ -68,10 +69,9 @@ public class Fragment_Login extends Fragment {
                 mBufferLogin=etLogin.getText().toString();
                 mBufferPassword= etPassword.getText().toString();
 
-                if((mBufferLogin==testLogin)&(mBufferPassword==testPassword)){
-                    Intent intentRoom=new Intent(getActivity(),Fragment_Room.class);
-                    startActivity(intentRoom);
-                }
+                Toast.makeText(getActivity(), "Pass ok", Toast.LENGTH_SHORT).show();
+                Intent room=new Intent(getActivity(), RoomActivity.class);
+                startActivity(room);
             }
         };
 
@@ -80,8 +80,6 @@ public class Fragment_Login extends Fragment {
 
 
                 btnLogin.setOnClickListener(clickListener);
-
-
         return view;
     }
 

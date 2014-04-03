@@ -10,8 +10,8 @@ import android.view.ViewGroup;
  * Created by Home on 3/29/14.
  */
 public class Fragment_Registration extends Fragment {
-
-
+	
+	
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
