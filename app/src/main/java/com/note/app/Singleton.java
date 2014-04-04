@@ -11,6 +11,8 @@ public class Singleton extends Application{
 
     public static ArrayList<HashMap<String, Object>> Notes;
     HashMap<String, Object> hm;
+    public static int Counter=0;
+
 
         private static final String TITLE = "name";
         private static final String DESCRIPTION = "description";
@@ -20,7 +22,8 @@ public class Singleton extends Application{
 	    	    	 
 	    public Singleton() {
 
-           Notes=new ArrayList<HashMap<String, Object>>();
+            Notes=new ArrayList<HashMap<String, Object>>();
+
             hm=new HashMap<String, Object>();
             hm.put(TITLE,"first");
             hm.put(DESCRIPTION,"bla bla bla");

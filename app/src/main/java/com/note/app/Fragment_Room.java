@@ -38,13 +38,13 @@ public class Fragment_Room extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
       View view=inflater.inflate(R.layout.fragment_room,null);
-        Singleton mySig=new Singleton();
+
 
 
         listView =(ListView) view.findViewById(R.id.listViewRoom);
 
        // ArrayAdapter listViewAdapter= new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1,mass);
-        SimpleAdapter listViewAdapter=new SimpleAdapter(getActivity(),mySig.Notes,R.layout.list_item,new String[]{TITLE,DESCRIPTION},new int[]{R.id.text1,R.id.text2});
+        SimpleAdapter listViewAdapter=new SimpleAdapter(getActivity(),Singleton.Notes,R.layout.list_item,new String[]{TITLE,DESCRIPTION},new int[]{R.id.text1,R.id.text2});
         listView.setAdapter(listViewAdapter);
         return view;
     }
