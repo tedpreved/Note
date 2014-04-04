@@ -11,5 +11,10 @@
     <string name="btnRegistration">Registration</string>
     <string name="tvRegistration">Registration new user</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_page__edit_">Edit</string>
+    <string name="title_activity_activity_new_note">New Note</string>
+    <string name="icon_plus">plus</string>
+    <string name="menu_item_exit">Exit</string>
+    <string name="menu_item_change_pass">Change pass</string>
 
 </resources>

@@ -8,7 +8,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 
-public class MainActivity extends Activity implements ActionBar.TabListener{
+public class ActivityMain extends Activity implements ActionBar.TabListener{
 
     private ViewPager mViewPager;
 
@@ -32,7 +32,9 @@ public class MainActivity extends Activity implements ActionBar.TabListener{
 
 
 
-        PagerAdapter pagerAdapter=new TabsPagerAdapter(getFragmentManager());
+
+
+        PagerAdapter pagerAdapter=new AdapterTabsPager(getFragmentManager());
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
                 @Override

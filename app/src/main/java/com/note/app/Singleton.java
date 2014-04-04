@@ -1,36 +1,36 @@
 package com.note.app;
 
-import java.util.List;
+import android.app.Application;
 
-public class Singleton {
-	
-	 private static final Singleton instance;
-	 
-	 private List<String> ListNotes; 
-	 
-	 
-	 
-	    static {
-	        try {
-	            instance = new Singleton();
-	        } catch (Exception e) {
-	            throw new RuntimeException("Darn, an error occurred!", e);
-	        }
-	    }
-	 
-	    public static Singleton getInstance() {
-	        return instance;
-	    }
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class Singleton extends Application{
+
+
+
+    public static ArrayList<HashMap<String, Object>> Notes;
+    HashMap<String, Object> hm;
+
+        private static final String TITLE = "name";
+        private static final String DESCRIPTION = "description";
+
+    public void putItem(String noteName,String noteText) {
+ }
 	    	    	 
-	    private Singleton() {	
-	    	
-	     ListNotes.add("1");
-	   	 ListNotes.add("2");
-	   	 ListNotes.add("3");
-	   	 
+	    public Singleton() {
+
+           Notes=new ArrayList<HashMap<String, Object>>();
+            hm=new HashMap<String, Object>();
+            hm.put(TITLE,"first");
+            hm.put(DESCRIPTION,"bla bla bla");
+            Notes.add(hm);
+
+            hm=new HashMap<String, Object>();
+            hm.put(TITLE,"Second");
+            hm.put(DESCRIPTION,"bla bla bla  sdfljsngkjbfskvb lfnvkfdsbvnajlfhvnkfdsljvbnfldvnfdkllbnfdlsbndfslbn");
+            Notes.add(hm);
 	    }
-	    public void putInstance(String stuff) {
-			ListNotes.add(stuff);
-		}
+
 
 }
