@@ -29,11 +29,15 @@ public class ActivityRoom extends Activity {
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch (featureId){
             case 0:
-                Intent NewNote = new Intent(this,ActivityNewNote.class);
+                Intent NewNote = new Intent(this,ActivityNewNote.class);           
                 startActivity(NewNote);
                 break;
         }
 
         return super.onMenuItemSelected(featureId, item);
     }
+    
+    
+  
+
 }

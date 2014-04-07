@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -48,4 +50,16 @@ public class Fragment_Room extends Fragment {
         listView.setAdapter(listViewAdapter);
         return view;
     }
+    
+    @Override
+    public void onResume() {
+    	// TODO Auto-generated method stub
+    	if(listView.getAdapter() instanceof BaseAdapter) {
+    		((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
+    	}
+    	super.onResume();
+    }
+    
+   
+    
 }

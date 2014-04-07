@@ -31,7 +31,7 @@ public class ActivityMain extends Activity implements ActionBar.TabListener{
                         .setTabListener(this));
 
 
-
+                	
 
 
         PagerAdapter pagerAdapter=new AdapterTabsPager(getFragmentManager());
