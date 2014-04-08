@@ -27,11 +27,17 @@ public class ActivityRoom extends Activity {
 
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        switch (featureId){
-            case 0:
+        switch (item.getItemId()){
+            case R.id.action_search:
                 Intent NewNote = new Intent(this,ActivityNewNote.class);           
                 startActivity(NewNote);
-                break;
+            break;
+            
+            case R.id.change_pass:
+            	Intent ChangePass=new Intent(this, ActivityDialogChangePass.class);
+            	startActivity(ChangePass);
+            break;
+            
         }
 
         return super.onMenuItemSelected(featureId, item);

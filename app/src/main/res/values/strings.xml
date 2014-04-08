@@ -16,5 +16,6 @@
     <string name="icon_plus">plus</string>
     <string name="menu_item_exit">Exit</string>
     <string name="menu_item_change_pass">Change pass</string>
+    <string name="title_activity_change_pass">Change pass</string>
 
 </resources>
