@@ -14,7 +14,7 @@
     <string name="title_activity_page__edit_">Edit</string>
     <string name="title_activity_activity_new_note">New Note</string>
     <string name="icon_plus">plus</string>
-    <string name="menu_item_exit">Exit</string>
+    <string name="menu_item_exit">Log out</string>
     <string name="menu_item_change_pass">Change pass</string>
     <string name="title_activity_change_pass">Change pass</string>
 

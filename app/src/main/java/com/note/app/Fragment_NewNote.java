@@ -3,6 +3,7 @@ package com.note.app;
 import java.util.HashMap;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -59,6 +60,10 @@ public class Fragment_NewNote extends Fragment implements AddSaveNote {
 			hmBuff.put(TITLE, editText1.getText().toString());
 			hmBuff.put(DESCRIPTION, editText2.getText().toString());
 			addNote(hmBuff);
+			
+			Intent Room=new Intent(getActivity(),ActivityRoom.class);
+			Room.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(Room);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

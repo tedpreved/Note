@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by Home on 3/29/14.
@@ -16,91 +17,79 @@ import android.widget.EditText;
 
 public class Fragment_Login extends Fragment {
 
-    private static String TAG="myTag";
+	private static String TAG = "myTag";
 
-    private static String TAG_FOR_LOGIN="Login";
-    private static String TAG_FOR_PASS="Password";
+	private static String TAG_FOR_LOGIN = "Login";
+	private static String TAG_FOR_PASS = "Password";
 
+	final private String testLogin = "Admin";
+	final private String testPassword = "Admin123";
 
-    final private String testLogin="Admin";
-    final private String testPassword="Admin123";
+	EditText etLogin, etPassword;
+	Button btnLogin;
 
+	private String mBufferLogin;
+	private String mBufferPassword;
 
-    EditText etLogin,etPassword;
-    Button btnLogin;
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putString(TAG_FOR_LOGIN, mBufferLogin);
+		outState.putString(TAG_FOR_PASS, mBufferPassword);
+	}
 
-    private String  mBufferLogin;
-    private String mBufferPassword;
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
+		if (savedInstanceState == null) {
+			// mBufferLogin=savedInstanceState.getChar(TAG_FOR_LOGIN);
+		}
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString(TAG_FOR_LOGIN, mBufferLogin);
-        outState.putString(TAG_FOR_PASS, mBufferPassword);
-    }
+	}
 
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_login, null);
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+		etLogin = (EditText) view.findViewById(R.id.etLogin);
+		etPassword = (EditText) view.findViewById(R.id.etPassword);
 
-        if (savedInstanceState==null){
-          //  mBufferLogin=savedInstanceState.getChar(TAG_FOR_LOGIN);
-        }
+		btnLogin = (Button) view.findViewById(R.id.btnLogin);
 
+		Button.OnClickListener clickListener = new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
 
-    }
+				Log.d(TAG, "Input:" + mBufferLogin + "__" + mBufferPassword);
+				Log.d(TAG, "Const;" + testLogin + "__" + testPassword);
+				mBufferPassword = etPassword.getText().toString();
+				mBufferLogin = etLogin.getText().toString();
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_login,null);
+				if ((mBufferLogin.equals(Singleton.testLogin))
+						&& (mBufferPassword.equals(Singleton.testPass))) {
+					Intent room = new Intent(getActivity(), ActivityRoom.class);
+					startActivity(room);
+					getActivity().finish();
+				} else {
+					if (mBufferPassword == testPassword) {
+						Toast.makeText(getActivity(), "Cannot find pass",
+								Toast.LENGTH_SHORT).show();
+					}
+					;
+					if (mBufferLogin != Singleton.testLogin) {
+						Toast.makeText(getActivity(), "Error",
+								Toast.LENGTH_SHORT).show();
+					}
+				}
+			}
+		};
 
+		// etLogin.setText(mBufferLogin);
 
-        etLogin=(EditText)view.findViewById(R.id.etLogin);
-        etPassword=(EditText)view.findViewById(R.id.etPassword);
-
-        btnLogin=(Button)view.findViewById(R.id.btnLogin);
-
-
-
-
-
-        Button.OnClickListener clickListener=new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-                Log.d(TAG,"Input:"+mBufferLogin+"__"+mBufferPassword);
-                Log.d(TAG,"Const;"+testLogin+"__"+testPassword);
-                mBufferPassword=etPassword.getText().toString();
-                mBufferLogin=etLogin.getText().toString();
-
-
-
-
-                    //if((mBufferLogin.equals(testLogin))&&(mBufferPassword.equals(testPassword))){
-                            Intent room=new Intent(getActivity(), ActivityRoom.class);
-                            startActivity(room);
-                   // }
-                   // else{
-                       // if (mBufferPassword==testPassword){
-                       //     Toast.makeText(getActivity(),"Cannot find pass",Toast.LENGTH_SHORT).show();};
-                       // if (mBufferLogin=!testLogin)
-                       // Toast.makeText(getActivity(),"Error",Toast.LENGTH_SHORT).show();
-                   // }
-            }
-        };
-
-
-       // etLogin.setText(mBufferLogin);
-
-
-                btnLogin.setOnClickListener(clickListener);
-        return view;
-    }
-
+		btnLogin.setOnClickListener(clickListener);
+		return view;
+	}
 
 }
-
