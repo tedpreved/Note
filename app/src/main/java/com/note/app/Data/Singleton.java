@@ -28,12 +28,14 @@ public class Singleton {
 	public void Init() {
 		hm = new HashMap<String, String>();
 		hm.put(TITLE, "First");
-		hm.put(DESCRIPTION, "It's the first note");
+		hm.put(DESCRIPTION,
+				"It's the first note ddddddd ddddddddd ddddd dddddddd dddd dddd ddddddddddddddddddddddddddd");
 		Notes.add(hm);
 
 		hm = new HashMap<String, String>();
 		hm.put(TITLE, "Second");
-		hm.put(DESCRIPTION, "It's the second note");
+		hm.put(DESCRIPTION,
+				"It's the second note ggg gggggg ggggg ggggg gggggg ggggg ggggg gggg ggggggggggggggggggggggg");
 		Notes.add(hm);
 	}
 

@@ -8,7 +8,8 @@
         android:layout_width="3dp"
         android:layout_height="wrap_content"
         android:layout_weight="5"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:padding="@dimen/pad_20" >
 
         <TextView
             android:id="@+id/text1"
@@ -21,7 +22,9 @@
             android:id="@+id/text2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="This is Description" />
+            android:text="This is Description"
+            android:maxLines="1"
+             />
     </LinearLayout>
 
     <ImageView

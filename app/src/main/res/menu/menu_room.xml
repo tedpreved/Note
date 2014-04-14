@@ -12,7 +12,7 @@
         android:title="@string/menu_item_change_pass"/>
 
     <item
-        android:id="@+id/exit"
+        android:id="@+id/logout"
         android:title="@string/menu_item_exit"/>
 
 </menu>
