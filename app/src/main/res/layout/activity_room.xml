@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="com.note.app.Fragment_Room"
+        android:name="com.note.app.UI.Room.Fragment_Room"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal" />

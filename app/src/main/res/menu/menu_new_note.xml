@@ -1,8 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.note.app.ActivityNewNote" >
+    tools:context="com.note.app.UI.NewNote.ActivityNewNote" >
+
     <item android:id="@+id/action_save"
-        android:title="Save"
-        android:showAsAction="always"
-        />
+          android:title="Save"
+          android:showAsAction="always"/>
 </menu>

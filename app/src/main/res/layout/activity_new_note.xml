@@ -3,13 +3,13 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.note.app.ActivityNewNote"
+    tools:context="com.note.app.UI.NewNote.ActivityNewNote"
     tools:ignore="MergeRootFrame" >
 
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.note.app.Fragment_NewNote"
+        android:name="com.note.app.UI.NewNote.Fragment_NewNote"
         android:id="@+id/fragment"
         android:layout_gravity="center" />
 </FrameLayout>

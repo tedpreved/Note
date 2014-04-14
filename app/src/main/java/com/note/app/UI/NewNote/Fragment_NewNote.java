@@ -1,37 +1,31 @@
-package com.note.app;
-
-import java.util.HashMap;
+package com.note.app.UI.NewNote;
 
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
+
+import com.note.app.R;
+import com.note.app.Data.Singleton;
+import com.note.app.UI.Room.ActivityRoom;
 
 /**
  * Created by Monstr on 04.04.2014.
  */
-public class Fragment_NewNote extends Fragment implements AddSaveNote {
-
-	private static final String TITLE = "name";
-	private static final String DESCRIPTION = "description";
+public class Fragment_NewNote extends Fragment {
 
 	EditText editText1, editText2;
-	HashMap<String, Object> hmBuff;
-	Button btnAdd;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
-
 	}
 
 	@Override
@@ -48,30 +42,23 @@ public class Fragment_NewNote extends Fragment implements AddSaveNote {
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
-
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		if (item.getItemId() == R.id.action_save) {
-			Log.d("asd", "onOptionsItemSelected " + item);
-			hmBuff = new HashMap<String, Object>();
-			hmBuff.put(TITLE, editText1.getText().toString());
-			hmBuff.put(DESCRIPTION, editText2.getText().toString());
-			addNote(hmBuff);
-			
-			Intent Room=new Intent(getActivity(),ActivityRoom.class);
+			// --------------------Add Note to Singleton--------------
+			Singleton.getInstance().putItem(editText1.getText().toString(),
+					editText2.getText().toString());
+			// --------------------Start Activity Room------------------
+			Intent Room = new Intent(getActivity(), ActivityRoom.class);
 			Room.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(Room);
+			// ----------------------------------------------------------
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
-	@Override
-	public void addNote(HashMap<String, Object> hm) {
-		Singleton.Notes.add(hm);
-
-	}
 }

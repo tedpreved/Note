@@ -1,4 +1,4 @@
-package com.note.app;
+package com.note.app.UI.Main;
 
 import android.app.Fragment;
 import android.content.Intent;
@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import com.note.app.R;
+import com.note.app.UI.Room.ActivityRoom;
 
 /**
  * Created by Home on 3/29/14.
@@ -67,22 +69,22 @@ public class Fragment_Login extends Fragment {
 				mBufferPassword = etPassword.getText().toString();
 				mBufferLogin = etLogin.getText().toString();
 
-				if ((mBufferLogin.equals(Singleton.testLogin))
-						&& (mBufferPassword.equals(Singleton.testPass))) {
+//				if ((mBufferLogin.equals(Singleton.testLogin))
+//						&& (mBufferPassword.equals(Singleton.testPass))) {
 					Intent room = new Intent(getActivity(), ActivityRoom.class);
 					startActivity(room);
 					getActivity().finish();
-				} else {
-					if (mBufferPassword == testPassword) {
-						Toast.makeText(getActivity(), "Cannot find pass",
-								Toast.LENGTH_SHORT).show();
-					}
-					;
-					if (mBufferLogin != Singleton.testLogin) {
-						Toast.makeText(getActivity(), "Error",
-								Toast.LENGTH_SHORT).show();
-					}
-				}
+//				} else {
+//					if (mBufferPassword == testPassword) {
+//						Toast.makeText(getActivity(), "Cannot find pass",
+//								Toast.LENGTH_SHORT).show();
+//					}
+//					;
+//					if (mBufferLogin != Singleton.testLogin) {
+//						Toast.makeText(getActivity(), "Error",
+//								Toast.LENGTH_SHORT).show();
+//					}
+//				}
 			}
 		};
 

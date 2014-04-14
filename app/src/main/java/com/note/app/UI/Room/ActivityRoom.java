@@ -1,4 +1,4 @@
-package com.note.app;
+package com.note.app.UI.Room;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import com.note.app.R;
+import com.note.app.UI.ChangePass.ActivityDialogChangePass;
+import com.note.app.UI.NewNote.ActivityNewNote;
 
 public class ActivityRoom extends Activity {
 

@@ -8,6 +8,9 @@ import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.support.v13.app.FragmentPagerAdapter;
 
+import com.note.app.UI.Main.Fragment_Login;
+import com.note.app.UI.Main.Fragment_Registration;
+
 
 /**
  * Created by Home on 3/29/14.

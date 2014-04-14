@@ -1,4 +1,4 @@
-package com.note.app;
+package com.note.app.UI.Main;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+
+import com.note.app.R;
 
 /**
  * Created by Home on 3/29/14.

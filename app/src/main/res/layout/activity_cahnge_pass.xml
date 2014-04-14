@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/fragment1"
-        android:name="com.note.app.Fragment_ChangePass"
+        android:name="com.note.app.UI.ChangePass.Fragment_ChangePass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
