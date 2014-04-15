@@ -13,7 +13,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:id="@+id/editText2"
+        android:id="@+id/tvOldPass"
         android:hint="Text note"
         android:gravity="top" />
 

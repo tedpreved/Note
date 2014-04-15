@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.note.app.R;
+import com.note.app.Data.Singleton;
 import com.note.app.UI.Room.ActivityRoom;
 
 /**
@@ -43,7 +45,6 @@ public class Fragment_Login extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		if (savedInstanceState == null) {
 			// mBufferLogin=savedInstanceState.getChar(TAG_FOR_LOGIN);
 		}
@@ -69,22 +70,17 @@ public class Fragment_Login extends Fragment {
 				mBufferPassword = etPassword.getText().toString();
 				mBufferLogin = etLogin.getText().toString();
 
-//				if ((mBufferLogin.equals(Singleton.testLogin))
-//						&& (mBufferPassword.equals(Singleton.testPass))) {
+				if (Singleton.getInstance().Userscheck(
+						etLogin.getText().toString(),
+						etPassword.getText().toString())) {
 					Intent room = new Intent(getActivity(), ActivityRoom.class);
 					startActivity(room);
 					getActivity().finish();
-//				} else {
-//					if (mBufferPassword == testPassword) {
-//						Toast.makeText(getActivity(), "Cannot find pass",
-//								Toast.LENGTH_SHORT).show();
-//					}
-//					;
-//					if (mBufferLogin != Singleton.testLogin) {
-//						Toast.makeText(getActivity(), "Error",
-//								Toast.LENGTH_SHORT).show();
-//					}
-//				}
+				} else {
+					Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT)
+							.show();
+				}
+
 			}
 		};
 

@@ -14,6 +14,7 @@ public class NoteApp extends Application {
 		// TODO Auto-generated method stub
 		super.onCreate();
 		Singleton.getInstance().Init();
+		Singleton.getInstance().InitUser();
 	}
 
 }

@@ -17,5 +17,6 @@
     <string name="menu_item_exit">Log out</string>
     <string name="menu_item_change_pass">Change pass</string>
     <string name="title_activity_change_pass">Change pass</string>
+    <string name="btnChange">Change</string>
 
 </resources>

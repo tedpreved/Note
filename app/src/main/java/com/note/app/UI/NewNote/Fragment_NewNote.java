@@ -34,7 +34,7 @@ public class Fragment_NewNote extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_new_note, null);
 
 		editText1 = (EditText) view.findViewById(R.id.editText);
-		editText2 = (EditText) view.findViewById(R.id.editText2);
+		editText2 = (EditText) view.findViewById(R.id.tvOldPass);
 
 		return view;
 	}
