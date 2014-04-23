@@ -2,7 +2,11 @@ package com.note.app.UI.Room;
 
 import java.util.HashMap;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -30,6 +35,9 @@ public class Fragment_Room extends Fragment {
 	private static final String ID = "ID";
 	private static final String TEXT1 = "TEXT1";
 	private static final String TEXT2 = "TEXT2";
+
+	AlertDialog.Builder ad;
+	Context context;
 
 	ListView listView;
 
@@ -68,7 +76,48 @@ public class Fragment_Room extends Fragment {
 
 		};
 
+		OnItemLongClickListener listItemLongAction = new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					final int position, long id) {
+
+				context = getActivity();
+				ad = new AlertDialog.Builder(context);
+				ad.setTitle(R.string.allert_title);
+				ad.setMessage(R.string.allert_message);
+				ad.setNegativeButton(R.string.allert_decline,
+						new OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// TODO Auto-generated method stub
+
+							}
+						});
+				ad.setPositiveButton(R.string.allert_accept,
+						new OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// TODO Auto-generated method stub
+								Singleton.getInstance().removeNote(position);
+								if (listView.getAdapter() instanceof BaseAdapter) {
+									((BaseAdapter) listView.getAdapter())
+											.notifyDataSetChanged();
+								}
+
+							}
+						});
+				ad.setCancelable(false);
+				ad.show();
+				return false;
+			}
+		};
 		listView.setOnItemClickListener(listAction);
+		listView.setOnItemLongClickListener(listItemLongAction);
 		return view;
 	}
 

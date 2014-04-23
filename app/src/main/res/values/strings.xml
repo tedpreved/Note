@@ -18,5 +18,9 @@
     <string name="menu_item_change_pass">Change pass</string>
     <string name="title_activity_change_pass">Change pass</string>
     <string name="btnChange">Change</string>
+    <string name="allert_title">Atenntion</string>
+    <string name="allert_message">Are you really want remove this note?</string>
+    <string name="allert_accept">Yes</string>
+    <string name="allert_decline">Cancel</string>
 
 </resources>

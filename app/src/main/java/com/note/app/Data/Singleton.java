@@ -1,10 +1,10 @@
 package com.note.app.Data;
 
+import com.note.app.User;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-
-import com.note.app.User;
 
 public class Singleton {
 
@@ -57,15 +57,17 @@ public class Singleton {
 		Notes.add(noteBuffer);
 	}
 
-	public void setPassword(User LogInUser, String Old, String repeatOld,
+	public boolean setPassword(User LogInUser, String Old, String repeatOld,
 			String NewPass) {
 		for (User user : Users) {
 			if (user.getLogin().equals(LogInUser.getLogin()) == true) {
 				if (LogInUser.getPass().equals(Old)) {
 					user.setPass(NewPass);
+					return true;
 				}
 			}
 		}
+		return false;
 	}
 
 	public boolean chekInUsers(String Name, String Pass) {
@@ -78,9 +80,6 @@ public class Singleton {
 			}
 		}
 		return false;
-	}
-
-	public void setPass() {
 	}
 
 	public User getUserInSystem() {
@@ -102,6 +101,13 @@ public class Singleton {
 	public void editNote(int position, String NewTitle, String NewDescription) {
 		Notes.get(position).put(TITLE, NewTitle);
 		Notes.get(position).put(DESCRIPTION, NewDescription);
+
+	}
+
+	public void removeNote(int position) {
+		Notes.remove(position);
+		// Notes.get(position).remove(TITLE);
+		// Notes.get(position).remove(DESCRIPTION);
 
 	}
 

@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.note.app.R;
 import com.note.app.Data.Singleton;
@@ -37,11 +38,25 @@ public class Fragment_ChangePass extends Fragment {
 					getActivity().finish();
 					break;
 				case R.id.btnChange:
-					Singleton.getInstance().setPassword(
-							Singleton.getInstance().getUserInSystem(),
-							tvOldPass.getText().toString(),
-							tvNewPass.getText().toString(),
-							tvNewPass.getText().toString());
+					if (tvNewPassRepeat.getText().toString()
+							.equals(tvNewPass.getText().toString())) {
+						if (Singleton.getInstance().setPassword(
+								Singleton.getInstance().getUserInSystem(),
+								tvOldPass.getText().toString(),
+								tvNewPass.getText().toString(),
+								tvNewPassRepeat.getText().toString()) == true) {
+							Toast.makeText(getActivity(), "Success",
+									Toast.LENGTH_SHORT).show();
+						} else {
+							Toast.makeText(getActivity(), "WrongPass",
+									Toast.LENGTH_SHORT).show();
+						}
+					} else {
+						Toast.makeText(getActivity(),
+								"Not mismatch new password", Toast.LENGTH_SHORT)
+								.show();
+					}
+
 					getActivity().finish();
 					break;
 				}

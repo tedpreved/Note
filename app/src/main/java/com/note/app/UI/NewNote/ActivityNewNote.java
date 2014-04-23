@@ -13,7 +13,6 @@ public class ActivityNewNote extends Activity {
 
 	Fragment myFrag;
 	ActionBar actionBar;
-	int I;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

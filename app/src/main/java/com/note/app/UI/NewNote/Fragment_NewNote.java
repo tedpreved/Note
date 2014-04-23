@@ -42,7 +42,7 @@ public class Fragment_NewNote extends Fragment {
 		editText1 = (EditText) view.findViewById(R.id.editText);
 		editText2 = (EditText) view.findViewById(R.id.tvOldPass);
 
-		if (b.getInt(ID) != 888) {
+		if (b.getInt(ID) != -1) {
 			getActivity().setTitle(b.get(TEXT1).toString());
 			position = b.getInt(ID);
 			editText1.setText(b.get(TEXT1).toString());
@@ -66,6 +66,7 @@ public class Fragment_NewNote extends Fragment {
 				Singleton.getInstance().addNote(editText1.getText().toString(),
 						editText2.getText().toString());
 			} else {
+				// --------------------Edit Note to Singleton--------------
 				Singleton.getInstance().editNote(position,
 						editText1.getText().toString(),
 						editText2.getText().toString());

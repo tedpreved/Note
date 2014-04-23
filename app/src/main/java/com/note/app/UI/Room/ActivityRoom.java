@@ -35,10 +35,9 @@ public class ActivityRoom extends Activity {
 		switch (item.getItemId()) {
 		case R.id.action_search:
 			Intent NewNote = new Intent(this, ActivityNewNote.class);
-			NewNote.putExtra("ID", 888);
+			NewNote.putExtra("ID", -1);
 			startActivity(NewNote);
 			break;
-
 		case R.id.change_pass:
 			Intent ChangePass = new Intent(this, ActivityDialogChangePass.class);
 			startActivity(ChangePass);
