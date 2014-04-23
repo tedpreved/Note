@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/pad_20" >
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" >
 
         <ImageView
             android:id="@+id/imageView1"
@@ -18,7 +20,7 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Large Text"
+            android:text="@string/menu_item_change_pass"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </LinearLayout>
@@ -32,29 +34,34 @@
             android:id="@+id/tvOldPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:hint="Old password"/>
 
         <EditText
             android:id="@+id/tvNewPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:hint="New password"/>
 
         <EditText
             android:id="@+id/NewPassRepeat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" >
+            android:inputType="textPassword"
+            android:hint="New password repeat">
 
             <requestFocus />
         </EditText>
 
     </LinearLayout>
  
-	<LinearLayout 
+	<LinearLayout
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:orientation="horizontal">	    
+	    android:layout_gravity="center_horizontal"
+	    android:orientation="horizontal" >
+	    
 	    <Button
         android:id="@+id/btnChange"
         android:layout_width="wrap_content"

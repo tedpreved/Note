@@ -27,6 +27,9 @@ public class Fragment_Room extends Fragment {
 
 	private static final String TITLE = "name";
 	private static final String DESCRIPTION = "description";
+	private static final String ID = "ID";
+	private static final String TEXT1 = "TEXT1";
+	private static final String TEXT2 = "TEXT2";
 
 	ListView listView;
 
@@ -54,15 +57,18 @@ public class Fragment_Room extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-
 				Intent Edit = new Intent(getActivity(), ActivityNewNote.class);
-				Edit.putExtra("ID", arg3);
+				Edit.putExtra(ID, arg2);
+				HashMap<String, String> obj = (HashMap<String, String>) listView
+						.getAdapter().getItem(arg2);
+				Edit.putExtra(TEXT1, obj.get(TITLE));
+				Edit.putExtra(TEXT2, obj.get(DESCRIPTION));
 				startActivity(Edit);
-
 			}
 
 		};
 
+		listView.setOnItemClickListener(listAction);
 		return view;
 	}
 

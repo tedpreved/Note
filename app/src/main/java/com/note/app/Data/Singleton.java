@@ -13,9 +13,9 @@ public class Singleton {
 	private static final String TITLE = "name";
 	private static final String DESCRIPTION = "description";
 	private static Singleton sInstance;
-	private HashMap<String, String> hm;
+	private HashMap<String, String> noteBuffer;
 	private HashSet<User> Users;
-	public User UserInSystem;
+	private User UserInSystem;
 
 	public static Singleton getInstance() {
 		if (sInstance == null) {
@@ -30,52 +30,49 @@ public class Singleton {
 	}
 
 	public void Init() {
-		hm = new HashMap<String, String>();
-		hm.put(TITLE, "First");
-		hm.put(DESCRIPTION, "It's the first note");
-		Notes.add(hm);
+		noteBuffer = new HashMap<String, String>();
+		noteBuffer.put(TITLE, "First");
+		noteBuffer.put(DESCRIPTION, "It's the first note");
+		Notes.add(noteBuffer);
 
-		hm = new HashMap<String, String>();
-		hm.put(TITLE, "Second");
-		hm.put(DESCRIPTION, "It's the second note");
-		Notes.add(hm);
+		noteBuffer = new HashMap<String, String>();
+		noteBuffer.put(TITLE, "Second");
+		noteBuffer.put(DESCRIPTION, "It's the second note");
+		Notes.add(noteBuffer);
 	}
 
 	public void InitUser() {
-
-		Users.add(new User("Teo", "123"));
-		Users.add(new User("Ted", "345"));
-
+		Users.add(newUser("Teo", "123"));
+		Users.add(newUser("Ted", "345"));
 	}
 
 	public ArrayList<HashMap<String, String>> getNotes() {
 		return Notes;
 	}
 
-	public void putItem(String noteName, String noteText) {
-		hm = new HashMap<String, String>();
-		hm.put(TITLE, noteName);
-		hm.put(DESCRIPTION, noteText);
-		Notes.add(hm);
+	public void addNote(String noteName, String noteText) {
+		noteBuffer = new HashMap<String, String>();
+		noteBuffer.put(TITLE, noteName);
+		noteBuffer.put(DESCRIPTION, noteText);
+		Notes.add(noteBuffer);
 	}
 
 	public void setPassword(User LogInUser, String Old, String repeatOld,
 			String NewPass) {
 		for (User user : Users) {
 			if (user.getLogin().equals(LogInUser.getLogin()) == true) {
-				if (user.getPass().equals(Old)) {
-					user.setPassword(repeatOld, NewPass);
+				if (LogInUser.getPass().equals(Old)) {
+					user.setPass(NewPass);
 				}
 			}
 		}
-
 	}
 
-	public boolean Userscheck(String Name, String Pass) {
+	public boolean chekInUsers(String Name, String Pass) {
 		for (User user : Users) {
 			if (user.getLogin().equals(Name) == true) {
 				if (user.getPass().equals(Pass) == true) {
-					UserInSystem = user;
+					setUserInSystem(user);
 					return true;
 				}
 			}
@@ -84,6 +81,41 @@ public class Singleton {
 	}
 
 	public void setPass() {
+	}
+
+	public User getUserInSystem() {
+		return UserInSystem;
+	}
+
+	public void setUserInSystem(User userInSystem) {
+		UserInSystem = userInSystem;
+	}
+
+	private User newUser(String Login, String Pass) {
+		return new User(Login, Pass);
+	}
+
+	public void addUser(String Login, String Pass) {
+		Users.add(newUser(Login, Pass));
+	}
+
+	public void editNote(int position, String NewTitle, String NewDescription) {
+		Notes.get(position).put(TITLE, NewTitle);
+		Notes.get(position).put(DESCRIPTION, NewDescription);
+
+	}
+
+	public void verifyUser(String Login, String Pass, String repeatPass) {
+		boolean nameFree = true;
+		for (User user : Users) {
+			if (user.getLogin() == Login) {
+				nameFree = false;
+			}
+		}
+		if ((Pass.equals(repeatPass) == true) & (nameFree == true)) {
+			Singleton.getInstance().addUser(Login, repeatPass);
+		}
+
 	}
 
 }

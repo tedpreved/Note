@@ -38,7 +38,7 @@ public class Fragment_ChangePass extends Fragment {
 					break;
 				case R.id.btnChange:
 					Singleton.getInstance().setPassword(
-							Singleton.getInstance().UserInSystem,
+							Singleton.getInstance().getUserInSystem(),
 							tvOldPass.getText().toString(),
 							tvNewPass.getText().toString(),
 							tvNewPass.getText().toString());

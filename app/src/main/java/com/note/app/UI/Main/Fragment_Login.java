@@ -3,7 +3,6 @@ package com.note.app.UI.Main;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,19 +20,13 @@ import com.note.app.UI.Room.ActivityRoom;
 
 public class Fragment_Login extends Fragment {
 
-	private static String TAG = "myTag";
-
 	private static String TAG_FOR_LOGIN = "Login";
 	private static String TAG_FOR_PASS = "Password";
-
-	final private String testLogin = "Admin";
-	final private String testPassword = "Admin123";
+	private String mBufferLogin;
+	private String mBufferPassword;
 
 	EditText etLogin, etPassword;
 	Button btnLogin;
-
-	private String mBufferLogin;
-	private String mBufferPassword;
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
@@ -64,13 +57,7 @@ public class Fragment_Login extends Fragment {
 		Button.OnClickListener clickListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
-				Log.d(TAG, "Input:" + mBufferLogin + "__" + mBufferPassword);
-				Log.d(TAG, "Const;" + testLogin + "__" + testPassword);
-				mBufferPassword = etPassword.getText().toString();
-				mBufferLogin = etLogin.getText().toString();
-
-				if (Singleton.getInstance().Userscheck(
+				if (Singleton.getInstance().chekInUsers(
 						etLogin.getText().toString(),
 						etPassword.getText().toString())) {
 					Intent room = new Intent(getActivity(), ActivityRoom.class);
@@ -84,10 +71,7 @@ public class Fragment_Login extends Fragment {
 			}
 		};
 
-		// etLogin.setText(mBufferLogin);
-
 		btnLogin.setOnClickListener(clickListener);
 		return view;
 	}
-
 }

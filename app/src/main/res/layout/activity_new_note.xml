@@ -7,6 +7,7 @@
     tools:ignore="MergeRootFrame" 
     android:padding="@dimen/pad_20">
 
+    
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"

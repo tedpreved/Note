@@ -18,9 +18,7 @@ public class User {
 		return Password;
 	}
 
-	public void setPassword(String NewPass, String NewPassRepeat) {
-		if (NewPass.equals(NewPassRepeat)) {
-			Password = NewPass;
-		}
+	public void setPass(String NewPass) {
+		Password = NewPass;
 	}
 }

@@ -20,6 +20,11 @@ import com.note.app.UI.Room.ActivityRoom;
  */
 public class Fragment_NewNote extends Fragment {
 
+	private static final String ID = "ID";
+	private static final String TEXT1 = "TEXT1";
+	private static final String TEXT2 = "TEXT2";
+	private static int position;
+
 	EditText editText1, editText2;
 
 	@Override
@@ -32,9 +37,17 @@ public class Fragment_NewNote extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_new_note, null);
+		Bundle b = getActivity().getIntent().getExtras();
 
 		editText1 = (EditText) view.findViewById(R.id.editText);
 		editText2 = (EditText) view.findViewById(R.id.tvOldPass);
+
+		if (b.getInt(ID) != 888) {
+			getActivity().setTitle(b.get(TEXT1).toString());
+			position = b.getInt(ID);
+			editText1.setText(b.get(TEXT1).toString());
+			editText2.setText(b.get(TEXT2).toString());
+		}
 
 		return view;
 	}
@@ -48,9 +61,15 @@ public class Fragment_NewNote extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		if (item.getItemId() == R.id.action_save) {
-			// --------------------Add Note to Singleton--------------
-			Singleton.getInstance().putItem(editText1.getText().toString(),
-					editText2.getText().toString());
+			if (getActivity().getTitle().equals("New Note") == true) {
+				// --------------------Add Note to Singleton--------------
+				Singleton.getInstance().addNote(editText1.getText().toString(),
+						editText2.getText().toString());
+			} else {
+				Singleton.getInstance().editNote(position,
+						editText1.getText().toString(),
+						editText2.getText().toString());
+			}
 			// --------------------Start Activity Room------------------
 			Intent Room = new Intent(getActivity(), ActivityRoom.class);
 			Room.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
