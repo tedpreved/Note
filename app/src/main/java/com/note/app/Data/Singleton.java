@@ -1,10 +1,11 @@
 package com.note.app.Data;
 
-import com.note.app.User;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+
+import com.note.app.User;
+import com.note.app.Data.UserExeptions.Error;
 
 public class Singleton {
 
@@ -57,8 +58,7 @@ public class Singleton {
 		Notes.add(noteBuffer);
 	}
 
-	public boolean setPassword(User LogInUser, String Old, String repeatOld,
-			String NewPass) {
+	public boolean setPassword(User LogInUser, String Old, String NewPass) {
 		for (User user : Users) {
 			if (user.getLogin().equals(LogInUser.getLogin()) == true) {
 				if (LogInUser.getPass().equals(Old)) {
@@ -70,23 +70,25 @@ public class Singleton {
 		return false;
 	}
 
-	public boolean chekInUsers(String Name, String Pass) {
+	public void login(String Name, String Pass) throws UserExeptions {
 		for (User user : Users) {
-			if (user.getLogin().equals(Name) == true) {
-				if (user.getPass().equals(Pass) == true) {
+			if (user.getLogin().equals(Name)) {
+				if (user.getPass().equals(Pass)) {
 					setUserInSystem(user);
-					return true;
+					return;
+				} else {
+					throw new UserExeptions(Error.WRONG_PASSWORD);
 				}
 			}
 		}
-		return false;
+		throw new UserExeptions(Error.USER_NOT_FOUND);
 	}
 
 	public User getUserInSystem() {
 		return UserInSystem;
 	}
 
-	public void setUserInSystem(User userInSystem) {
+	private void setUserInSystem(User userInSystem) {
 		UserInSystem = userInSystem;
 	}
 
@@ -106,9 +108,6 @@ public class Singleton {
 
 	public void removeNote(int position) {
 		Notes.remove(position);
-		// Notes.get(position).remove(TITLE);
-		// Notes.get(position).remove(DESCRIPTION);
-
 	}
 
 	public void verifyUser(String Login, String Pass, String repeatPass) {
@@ -121,7 +120,6 @@ public class Singleton {
 		if ((Pass.equals(repeatPass) == true) & (nameFree == true)) {
 			Singleton.getInstance().addUser(Login, repeatPass);
 		}
-
 	}
 
 }

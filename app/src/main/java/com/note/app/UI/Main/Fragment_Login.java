@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.note.app.R;
 import com.note.app.Data.Singleton;
+import com.note.app.Data.UserExeptions;
 import com.note.app.UI.Room.ActivityRoom;
 
 /**
@@ -57,17 +58,25 @@ public class Fragment_Login extends Fragment {
 		Button.OnClickListener clickListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (Singleton.getInstance().chekInUsers(
-						etLogin.getText().toString(),
-						etPassword.getText().toString())) {
-					Intent room = new Intent(getActivity(), ActivityRoom.class);
-					startActivity(room);
-					getActivity().finish();
-				} else {
-					Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT)
-							.show();
+				try {
+					Singleton.getInstance().login(etLogin.getText().toString(),
+							etPassword.getText().toString());
+				} catch (UserExeptions e) {
+					switch (e.getError()) {
+					case USER_NOT_FOUND:
+						Toast.makeText(getActivity(), "User not found",
+								Toast.LENGTH_SHORT).show();
+						break;
+					case WRONG_PASSWORD:
+						Toast.makeText(getActivity(), "Wrong Pass",
+								Toast.LENGTH_SHORT).show();
+						break;
+					}
+					return;
 				}
-
+				Intent room = new Intent(getActivity(), ActivityRoom.class);
+				startActivity(room);
+				getActivity().finish();
 			}
 		};
 

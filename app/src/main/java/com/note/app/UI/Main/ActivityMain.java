@@ -52,7 +52,6 @@ public class ActivityMain extends Activity implements ActionBar.TabListener {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
@@ -62,18 +61,15 @@ public class ActivityMain extends Activity implements ActionBar.TabListener {
 	public void onTabSelected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
 		mViewPager.setCurrentItem(tab.getPosition(), true);
-
 	}
 
 	@Override
 	public void onTabUnselected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
-
 	}
 
 	@Override
 	public void onTabReselected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
-
 	}
 }
