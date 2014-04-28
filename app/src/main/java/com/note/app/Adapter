@@ -1,0 +1,77 @@
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.TextView;
+import com.example.helloworld1.R;
+
+package notes;
+
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.TextView;
+import com.example.helloworld1.R;
+
+/**
+ * Created by student on 4/28/14.
+ */
+public class TestAdapter extends BaseAdapter {
+
+    private Context mContext;
+    
+    TestAdapter(Context context) {
+        mContext = context;
+    }
+
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        View v = View.inflate(mContext, R.layout.list_item1, viewGroup);
+        v.....
+        return v;
+    }
+    
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        switch(getItemViewType(i)) {
+            case 0: {
+                if(view == null) {
+                    view = View.inflate(mContext, R.layout.list_item1, viewGroup);
+                }
+                Holder0 holder = (Holder0)view.getTag();
+                if(holder == null) {
+                    holder = new Holder0();
+                    holder.tvTitle = (TextView) view.findViewById(R.id.passchange_oldpass);
+                    holder.tvDescription = (TextView) view.findViewById(R.id.passchange_newpass);
+                    holder.btnDelete = (Button) view.findViewById(R.id.login_button);
+                    view.setTag(holder);
+                }
+                holder.tvTitle.setText(getItem(i).getTitle());
+                break;
+            }
+            case 1: {
+                if(view == null) {
+                    view = View.inflate(mContext, R.layout.list_item2, viewGroup);
+                }
+                GroupItem item = getItem(i);
+                .........
+                break;
+            }
+        }
+        return view;
+    }
+
+    public static class Holder0 {
+        public TextView tvTitle;
+        public TextView tvDescription;
+        public Button btnDelete;
+    }
+
+    public static class Holder1 {
+        public TextView tvGroupTitle;
+    }
+
+}
+*/

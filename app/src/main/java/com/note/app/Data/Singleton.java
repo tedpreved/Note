@@ -1,11 +1,11 @@
 package com.note.app.Data;
 
+import com.note.app.Data.UserExceptions.Error;
+import com.note.app.User;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-
-import com.note.app.User;
-import com.note.app.Data.UserExeptions.Error;
 
 public class Singleton {
 
@@ -70,18 +70,18 @@ public class Singleton {
 		return false;
 	}
 
-	public void login(String Name, String Pass) throws UserExeptions {
+	public void login(String Name, String Pass) throws UserExceptions {
 		for (User user : Users) {
 			if (user.getLogin().equals(Name)) {
 				if (user.getPass().equals(Pass)) {
 					setUserInSystem(user);
 					return;
 				} else {
-					throw new UserExeptions(Error.WRONG_PASSWORD);
+					throw new UserExceptions(Error.WRONG_PASSWORD);
 				}
 			}
 		}
-		throw new UserExeptions(Error.USER_NOT_FOUND);
+		throw new UserExceptions(Error.USER_NOT_FOUND);
 	}
 
 	public User getUserInSystem() {
@@ -110,16 +110,19 @@ public class Singleton {
 		Notes.remove(position);
 	}
 
-	public void verifyUser(String Login, String Pass, String repeatPass) {
+	public void registrationNewUser(String Login, String Pass, String repeatPass) throws UserExceptions {
 		boolean nameFree = true;
 		for (User user : Users) {
 			if (user.getLogin() == Login) {
 				nameFree = false;
-			}
-		}
-		if ((Pass.equals(repeatPass) == true) & (nameFree == true)) {
-			Singleton.getInstance().addUser(Login, repeatPass);
-		}
+			}}
+            if(nameFree){
+                if (Pass.equals(repeatPass)) {
+                    Singleton.getInstance().addUser(Login, repeatPass);
+                } else{ throw new UserExceptions(Error.PASSWORD_MISSMATCH);}
+            } else { throw new UserExceptions(Error.THIS_LOGIN_NOT_FREE);}
+
+
 	}
 
 }

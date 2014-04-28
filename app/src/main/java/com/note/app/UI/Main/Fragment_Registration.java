@@ -10,8 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.note.app.R;
 import com.note.app.Data.Singleton;
+import com.note.app.Data.UserExceptions;
+import com.note.app.R;
 
 /**
  * Created by Home on 3/29/14.
@@ -41,16 +42,29 @@ public class Fragment_Registration extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-
 				switch (v.getId()) {
 				case R.id.btnRegistration:
-					Singleton.getInstance().verifyUser(
-							editNewLogin.getText().toString(),
-							editNewPass.getText().toString(),
-							editNewPassVer.getText().toString());
-					Toast.makeText(getActivity(), "Registration succesfull",
-							Toast.LENGTH_SHORT).show();
-
+                    try {
+                        Singleton.getInstance().registrationNewUser(
+                            editNewLogin.getText().toString(),
+                            editNewPass.getText().toString(),
+                            editNewPassVer.getText().toString());
+                    } catch (UserExceptions userExceptions) {
+                        switch(userExceptions.getError()){
+                            case THIS_LOGIN_NOT_FREE:
+                                Toast.makeText(getActivity(),
+                                        "Sorry, you need crate another login!",
+                                        Toast.LENGTH_SHORT).show();
+                            break;
+                            case PASSWORD_MISSMATCH:
+                                Toast.makeText(getActivity(),
+                                        "Sorry, check your password!",
+                                        Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        return;
+                    }
+                    Toast.makeText(getActivity(),"Congratulations",Toast.LENGTH_SHORT).show();
 					break;
 				}
 

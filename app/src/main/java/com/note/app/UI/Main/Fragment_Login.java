@@ -10,9 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.note.app.Data.UserExceptions;
 import com.note.app.R;
 import com.note.app.Data.Singleton;
-import com.note.app.Data.UserExeptions;
 import com.note.app.UI.Room.ActivityRoom;
 
 /**
@@ -23,8 +23,7 @@ public class Fragment_Login extends Fragment {
 
 	private static String TAG_FOR_LOGIN = "Login";
 	private static String TAG_FOR_PASS = "Password";
-	private String mBufferLogin;
-	private String mBufferPassword;
+
 
 	EditText etLogin, etPassword;
 	Button btnLogin;
@@ -32,8 +31,7 @@ public class Fragment_Login extends Fragment {
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		outState.putString(TAG_FOR_LOGIN, mBufferLogin);
-		outState.putString(TAG_FOR_PASS, mBufferPassword);
+
 	}
 
 	@Override
@@ -61,7 +59,7 @@ public class Fragment_Login extends Fragment {
 				try {
 					Singleton.getInstance().login(etLogin.getText().toString(),
 							etPassword.getText().toString());
-				} catch (UserExeptions e) {
+				} catch (UserExceptions e) {
 					switch (e.getError()) {
 					case USER_NOT_FOUND:
 						Toast.makeText(getActivity(), "User not found",

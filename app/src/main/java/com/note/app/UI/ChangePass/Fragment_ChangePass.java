@@ -44,7 +44,7 @@ public class Fragment_ChangePass extends Fragment {
 						if (Singleton.getInstance().setPassword(
 								Singleton.getInstance().getUserInSystem(),
 								tvOldPass.getText().toString(),
-								tvNewPassRepeat.getText().toString()) == true) {
+								tvNewPassRepeat.getText().toString())) {
 							Toast.makeText(getActivity(), "Success",
 									Toast.LENGTH_SHORT).show();
 						} else {
