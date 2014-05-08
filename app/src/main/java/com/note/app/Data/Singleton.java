@@ -1,22 +1,19 @@
 package com.note.app.Data;
 
 import com.note.app.Data.UserExceptions.Error;
+import com.note.app.NoteObj.NoteItem;
 import com.note.app.User;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class Singleton {
 
-	private final ArrayList<HashMap<String, String>> Notes;
-
-	private static final String TITLE = "name";
-	private static final String DESCRIPTION = "description";
 	private static Singleton sInstance;
-	private HashMap<String, String> noteBuffer;
 	private HashSet<User> Users;
 	private User UserInSystem;
+
+    private ArrayList<NoteItem> Notessss;//add
 
 	public static Singleton getInstance() {
 		if (sInstance == null) {
@@ -26,20 +23,14 @@ public class Singleton {
 	}
 
 	private Singleton() {
-		Notes = new ArrayList<HashMap<String, String>>();
 		Users = new HashSet<User>();
+        Notessss= new   ArrayList<NoteItem>();// add
+
 	}
 
 	public void Init() {
-		noteBuffer = new HashMap<String, String>();
-		noteBuffer.put(TITLE, "First");
-		noteBuffer.put(DESCRIPTION, "It's the first note");
-		Notes.add(noteBuffer);
-
-		noteBuffer = new HashMap<String, String>();
-		noteBuffer.put(TITLE, "Second");
-		noteBuffer.put(DESCRIPTION, "It's the second note");
-		Notes.add(noteBuffer);
+        Notessss.add(new NoteItem("Firsttt","ttttt"));
+        Notessss.add(new NoteItem("Seconddd","dddd"));
 	}
 
 	public void InitUser() {
@@ -47,15 +38,13 @@ public class Singleton {
 		Users.add(newUser("Ted", "345"));
 	}
 
-	public ArrayList<HashMap<String, String>> getNotes() {
-		return Notes;
+	public ArrayList<NoteItem> getNotes() {
+		return Notessss;
 	}
 
 	public void addNote(String noteName, String noteText) {
-		noteBuffer = new HashMap<String, String>();
-		noteBuffer.put(TITLE, noteName);
-		noteBuffer.put(DESCRIPTION, noteText);
-		Notes.add(noteBuffer);
+       Notessss.add(new NoteItem(noteName,noteText));
+
 	}
 
 	public boolean setPassword(User LogInUser, String Old, String NewPass) {
@@ -101,13 +90,13 @@ public class Singleton {
 	}
 
 	public void editNote(int position, String NewTitle, String NewDescription) {
-		Notes.get(position).put(TITLE, NewTitle);
-		Notes.get(position).put(DESCRIPTION, NewDescription);
+        Notessss.get(position).setTitle(NewTitle);
+        Notessss.get(position).setText(NewDescription);
 
 	}
 
 	public void removeNote(int position) {
-		Notes.remove(position);
+        Notessss.remove(position);
 	}
 
 	public void registrationNewUser(String Login, String Pass, String repeatPass) throws UserExceptions {

@@ -1,7 +1,5 @@
 package com.note.app.UI.Room;
 
-import java.util.HashMap;
-
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
@@ -17,11 +15,14 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
-import com.note.app.R;
 import com.note.app.Data.Singleton;
+import com.note.app.MyAdapter;
+import com.note.app.NoteObj.NoteItem;
+import com.note.app.R;
 import com.note.app.UI.NewNote.ActivityNewNote;
+
+import java.util.HashMap;
 
 /**
  * Created by Monstr on 30.03.2014.
@@ -55,10 +56,22 @@ public class Fragment_Room extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_room, null);
 
 		listView = (ListView) view.findViewById(R.id.listViewRoom);
-		SimpleAdapter listViewAdapter = new SimpleAdapter(getActivity(),
-				Singleton.getInstance().getNotes(), R.layout.list_item,
-				new String[] { TITLE, DESCRIPTION }, new int[] { R.id.text1,
-						R.id.text2 });
+//		SimpleAdapter listViewAdapter = new SimpleAdapter(getActivity(),
+//				Singleton.getInstance().getNotes(), R.layout.list_item,
+//				new String[] { TITLE, DESCRIPTION }, new int[] { R.id.text1,
+//						R.id.text2 });
+
+        MyAdapter listViewAdapter= new MyAdapter();
+        listViewAdapter.setOnDeleteClickListener(new MyAdapter.OnDeleteItemListner() {
+            @Override
+            public void onItemDeleteClick(int position) {
+                Singleton.getInstance().removeNote(position);
+                if (listView.getAdapter() instanceof BaseAdapter) {
+                    ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
+                }
+
+            }
+        });
 		listView.setAdapter(listViewAdapter);
 
 		OnItemClickListener listAction = new OnItemClickListener() {
@@ -67,10 +80,10 @@ public class Fragment_Room extends Fragment {
 					long arg3) {
 				Intent Edit = new Intent(getActivity(), ActivityNewNote.class);
 				Edit.putExtra(ID, arg2);
-				HashMap<String, String> obj = (HashMap<String, String>) listView
+				NoteItem obj = (NoteItem) listView
 						.getAdapter().getItem(arg2);
-				Edit.putExtra(TEXT1, obj.get(TITLE));
-				Edit.putExtra(TEXT2, obj.get(DESCRIPTION));
+				Edit.putExtra(TEXT1, obj.getTitle());
+				Edit.putExtra(TEXT2, obj.getText());
 				startActivity(Edit);
 			}
 
