@@ -16,10 +16,17 @@ public class ActivityMain extends Activity implements ActionBar.TabListener {
 
 	private ViewPager mViewPager;
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+        if (savedInstanceState==null){
+            getFragmentManager().beginTransaction()
+                    .add(new FragmentGetData(),"dataFragment")
+                    .commit();
+        }
 
 		mViewPager = (ViewPager) findViewById(R.id.viewpager);
 

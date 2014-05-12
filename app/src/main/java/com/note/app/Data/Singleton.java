@@ -60,8 +60,14 @@ public class Singleton {
 	}
 
 	public void login(String Name, String Pass) throws UserExceptions {
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 		for (User user : Users) {
-			if (user.getLogin().equals(Name)) {
+            if (user.getLogin().equals(Name)) {
 				if (user.getPass().equals(Pass)) {
 					setUserInSystem(user);
 					return;
@@ -92,7 +98,6 @@ public class Singleton {
 	public void editNote(int position, String NewTitle, String NewDescription) {
         Notessss.get(position).setTitle(NewTitle);
         Notessss.get(position).setText(NewDescription);
-
 	}
 
 	public void removeNote(int position) {
