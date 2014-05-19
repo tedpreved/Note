@@ -60,7 +60,12 @@ public class Singleton {
 	}
 
 	public void login(String Name, String Pass) throws UserExceptions {
-		for (User user : Users) {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        for (User user : Users) {
 			if (user.getLogin().equals(Name)) {
 				if (user.getPass().equals(Pass)) {
 					setUserInSystem(user);
