@@ -54,7 +54,7 @@ public class Singleton {
 					user.setPass(NewPass);
 					return true;
 				}
-			}
+			};
 		}
 		return false;
 	}

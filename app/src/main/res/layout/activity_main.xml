@@ -13,19 +13,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/viewpager" >
 
-        <fragment
-            android:id="@+id/fragment1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            class="com.note.app.UI.Main.Fragment_Login"
-            tools:layout="@layout/fragment_login" />
-        <fragment
-            android:id="@+id/fragment2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            class="com.note.app.UI.Main.Fragment_Registration"
-            tools:layout="@layout/fragment_registration" />
-
     </android.support.v4.view.ViewPager>
 
 </RelativeLayout>
