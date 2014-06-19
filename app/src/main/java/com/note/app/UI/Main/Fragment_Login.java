@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.note.app.Data.Singleton;
+import com.note.app.Data.UserExceptions;
 import com.note.app.R;
 import com.note.app.UI.Room.ActivityRoom;
 
@@ -51,7 +53,6 @@ public class Fragment_Login extends Fragment {
 
         etLogin = (EditText) view.findViewById(R.id.etLogin);
         etPassword = (EditText) view.findViewById(R.id.etPassword);
-
         btnLogin = (Button) view.findViewById(R.id.btnLogin);
 
         Button.OnClickListener clickListener = new View.OnClickListener() {
@@ -61,7 +62,6 @@ public class Fragment_Login extends Fragment {
                // params.putString("LOGIN", etLogin.getText().toString());
                // params.putString("PASSWORD", etPassword.getText().toString());
                // Toast.makeText(getActivity(), "restart loader", Toast.LENGTH_SHORT).show();
-
                 executeLoginLoader(etLogin.getText().toString(), etPassword.getText().toString());
 
             }
@@ -76,7 +76,7 @@ public class Fragment_Login extends Fragment {
     }
 
     public static class LoginResponse {
-        String status;
+        boolean status;
     }
 
     public interface LoadingHandler<T> {
@@ -84,10 +84,6 @@ public class Fragment_Login extends Fragment {
         void onStopLoading();
         void onLoadingResult(T result);
     }
-
-
-
-
 
         private void initLoginLoader() {
             final Loader<?> loader = getLoaderManager().getLoader(R.id.loader_login);
@@ -107,14 +103,10 @@ public class Fragment_Login extends Fragment {
             getLoaderManager().restartLoader(R.id.loader_login, args, mLoginLoaderCallback);
         }
 
-
-
-
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState) {
             Log.d("test", "PlaceholderFragment.onViewCreated");
             super.onViewCreated(view, savedInstanceState);
-
             // init loaders
             initLoginLoader();
         }
@@ -124,8 +116,6 @@ public class Fragment_Login extends Fragment {
             Log.d("test", "PlaceholderFragment.onSaveInstanceState");
             super.onSaveInstanceState(outState);
         }
-
-
 
         @Override
         public void onDestroy() {
@@ -160,9 +150,9 @@ public class Fragment_Login extends Fragment {
 
             @Override
             public void onLoadingResult(LoginResponse result) {
-                Toast.makeText(getActivity(), result.status, Toast.LENGTH_SHORT).show();
-               // if(result.status)
-                startActivity(new Intent(getActivity(),ActivityRoom.class));
+                Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
+                if(result.status){
+                startActivity(new Intent(getActivity(),ActivityRoom.class));}
             }
         };
 
@@ -239,7 +229,21 @@ public class Fragment_Login extends Fragment {
                     return null;
                 } else {
                     mResponse = new LoginResponse();
-                    mResponse.status = mLogin;
+                    try {
+                        Singleton.getInstance().login(mLogin, mPassword);
+                    } catch (UserExceptions userExceptions) {
+                        userExceptions.printStackTrace();
+                        switch (userExceptions.getError()) {
+                            case USER_NOT_FOUND:
+
+                                break;
+                            case WRONG_PASSWORD:
+
+                                break;
+                        }
+
+                    }
+                    mResponse.status=true;
                     return mResponse;
                 }
             }
@@ -268,11 +272,4 @@ public class Fragment_Login extends Fragment {
                 mResponse = null;
             }
         }
-
-
-
-
-
-
-
 }

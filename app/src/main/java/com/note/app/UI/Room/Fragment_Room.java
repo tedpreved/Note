@@ -20,6 +20,7 @@ import com.note.app.Data.Singleton;
 import com.note.app.MyAdapter;
 import com.note.app.NoteObj.NoteItem;
 import com.note.app.R;
+import com.note.app.TestAdapterDB;
 import com.note.app.UI.NewNote.ActivityNewNote;
 
 import java.util.HashMap;
@@ -61,17 +62,17 @@ public class Fragment_Room extends Fragment {
 //				new String[] { TITLE, DESCRIPTION }, new int[] { R.id.text1,
 //						R.id.text2 });
 
-        MyAdapter listViewAdapter= new MyAdapter();
-        listViewAdapter.setOnDeleteClickListener(new MyAdapter.OnDeleteItemListner() {
-            @Override
-            public void onItemDeleteClick(int position) {
-                Singleton.getInstance().removeNote(position);
-                if (listView.getAdapter() instanceof BaseAdapter) {
-                    ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
-                }
-
-            }
-        });
+        //MyAdapter listViewAdapter= new MyAdapter();
+        TestAdapterDB listViewAdapter=new TestAdapterDB(getActivity());
+    //   listViewAdapter.setOnDeleteClickListener(new MyAdapter.OnDeleteItemListner() {
+    //       @Override
+    //       public void onItemDeleteClick(int position) {
+    //           Singleton.getInstance().removeNote(position);
+    //          if (listView.getAdapter() instanceof BaseAdapter) {
+    //              ((BaseAdapter) listView.getAdapter()).notifyDataSetChanged();
+    //          }
+    //      }
+    //  });
 		listView.setAdapter(listViewAdapter);
 
 		OnItemClickListener listAction = new OnItemClickListener() {

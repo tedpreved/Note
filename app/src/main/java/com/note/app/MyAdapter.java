@@ -16,6 +16,8 @@ public class MyAdapter extends BaseAdapter {
 
     OnDeleteItemListner listner;
 
+
+
     @Override
     public int getCount() {
         return Singleton.getInstance().getNotes().size();
